@@ -1,0 +1,21 @@
+# Security files - never include in AI context
+config/secrets.json
+config/api_keys.json
+.secrets
+.api_keys
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Cache and temporary files
+data_cache/
+logs/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment files
+.env
+.env.local
+.env.production
