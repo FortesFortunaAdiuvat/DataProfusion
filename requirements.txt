@@ -1,0 +1,4 @@
+Flask>=2.3
+dash>=2.13
+pandas>=2.0
+plotly>=5.16
