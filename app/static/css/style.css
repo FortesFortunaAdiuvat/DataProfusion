@@ -1,0 +1,57 @@
+/* Additional styles for the Data Profusion application */
+
+/* Ensure smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(34, 139, 34, 0.6);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(34, 139, 34, 0.8);
+}
+
+/* Loading animation for charts */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(34, 139, 34, 0.3);
+    border-radius: 50%;
+    border-top-color: #228B22;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Accessibility improvements */
+.chart-link:focus {
+    outline: 2px solid #228B22;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white !important;
+    }
+    
+    .chart-link {
+        background: white !important;
+        border: 1px solid #228B22 !important;
+    }
+}

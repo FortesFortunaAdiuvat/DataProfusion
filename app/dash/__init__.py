@@ -56,8 +56,13 @@ def register_dashapps(app: Flask) -> None:
         style={"margin": "40px"},
     )
 
-    # Set an endpoint name for Flask redirection.  The `dashboard` suffix
-    # corresponds to `url_for("dash_dashboard")` in the Flask route.  Without
-    # this explicit name, Flask cannot reference the Dash view.
+    # Set the external stylesheets properly
     dash_app.config.external_stylesheets = dash_app._external_stylesheets
-    app.view_functions["dash_dashboard"] = dash_app.server.view_functions[mount_path + ""]
+    
+    # Register a Flask route that redirects to the Dash app
+    # This creates the 'dash_dashboard' endpoint that can be used with url_for()
+    @app.route('/dashboard/')
+    def dash_dashboard():
+        """Redirect to the Dash application."""
+        from flask import redirect
+        return redirect(mount_path)

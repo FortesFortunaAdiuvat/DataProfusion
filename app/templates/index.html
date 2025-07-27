@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Profusion - Economic Charts</title>
+    
+    <style>
+        body {
+            background-image: url("{{ url_for('static', filename='images/background.jpeg') }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .main-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #228B22;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 2s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            width: 100%;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .chart-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            color: #228B22;
+            font-weight: bold;
+        }
+
+        .chart-link:hover {
+            transform: translateY(-5px);
+            background: rgba(0, 0, 0, 0.7);
+            border-color: #228B22;
+            box-shadow: 0 10px 25px rgba(34, 139, 34, 0.3);
+        }
+
+        .chart-icon {
+            width: 80px;
+            height: 80px;
+            background: #228B22;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .chart-link:hover .chart-icon {
+            background: #32CD32;
+            transform: scale(1.1);
+        }
+
+        .chart-title {
+            font-size: 1.1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .chart-link:hover .chart-title {
+            font-size: 1.3rem;
+            text-decoration: underline;
+            color: #32CD32;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .chart-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1.5rem;
+                max-width: 600px;
+            }
+            
+            .chart-link {
+                padding: 1.5rem;
+            }
+            
+            .chart-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+
+<body>
+    <div id="particles"></div>
+    
+    <div class="main-content">
+        <h1 class="title">Data Profusion</h1>
+        
+        <div class="chart-grid">
+            <a href="{{ url_for('dash_dashboard') }}" target="_blank" class="chart-link">
+                <div class="chart-icon">GDP</div>
+                <div class="chart-title">Economic Growth</div>
+            </a>
+            
+            <a href="#" class="chart-link" onclick="alert('Coming Soon!')">
+                <div class="chart-icon">JOBS</div>
+                <div class="chart-title">Employment Stats</div>
+            </a>
+            
+            <a href="#" class="chart-link" onclick="alert('Coming Soon!')">
+                <div class="chart-icon">$</div>
+                <div class="chart-title">Market Data</div>
+            </a>
+            
+            <a href="#" class="chart-link" onclick="alert('Coming Soon!')">
+                <div class="chart-icon">📊</div>
+                <div class="chart-title">Trade Balance</div>
+            </a>
+
+            <a href="#" class="chart-link" onclick="alert('Coming Soon!')">
+                <div class="chart-icon">🏦</div>
+                <div class="chart-title">Banking Sector</div>
+            </a>
+
+            <a href="#" class="chart-link" onclick="alert('Coming Soon!')">
+                <div class="chart-icon">📈</div>
+                <div class="chart-title">Stock Indices</div>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.particleground.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/demo.js') }}"></script>
+</body>
+</html>

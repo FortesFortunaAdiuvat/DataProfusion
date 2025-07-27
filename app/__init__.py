@@ -9,7 +9,7 @@ structure modular and easier to extend.
 from __future__ import annotations
 
 import os
-from flask import Flask, redirect, url_for
+from flask import Flask, render_template
 
 from .dash import register_dashapps
 
@@ -33,9 +33,8 @@ def create_app() -> Flask:
 
     @app.route("/")
     def index():
-        """Redirect the root URL to the Dash application."""
-        # You can change '/dash/' to any path where your main Dash app lives.
-        return redirect(url_for("dash_dashboard"))
+        """Serve the main landing page with navigation to Dash applications."""
+        return render_template("index.html")
 
     # Additional Flask routes can be defined here or imported from .routes
 
