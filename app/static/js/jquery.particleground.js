@@ -83,7 +83,7 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            particles.forEach(function(particle) {
+            particles.forEach(function(particle, i) {
                 // Update position
                 particle.x += particle.vx;
                 particle.y += particle.vy;
@@ -106,6 +106,47 @@
                 ctx.fillStyle = settings.dotColor;
                 ctx.globalAlpha = 0.6;
                 ctx.fill();
+
+                // Draw connections to nearby particles
+                for (var j = i + 1; j < particles.length; j++) {
+                    var particle2 = particles[j];
+                    var dx = particle.x - particle2.x;
+                    var dy = particle.y - particle2.y;
+                    var distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < settings.proximity) {
+                        // 25% chance for neon green flash
+                        var isFlashing = Math.random() < 0.25;
+                        
+                        ctx.beginPath();
+                        ctx.moveTo(
+                            particle.x + (particle.parallaxX || 0),
+                            particle.y + (particle.parallaxY || 0)
+                        );
+                        ctx.lineTo(
+                            particle2.x + (particle2.parallaxX || 0),
+                            particle2.y + (particle2.parallaxY || 0)
+                        );
+                        
+                        if (isFlashing) {
+                            ctx.strokeStyle = '#00FF00'; // Bright neon green
+                            ctx.lineWidth = settings.lineWidth * 2;
+                            ctx.globalAlpha = 0.9;
+                            ctx.shadowColor = '#00FF00';
+                            ctx.shadowBlur = 10;
+                        } else {
+                            ctx.strokeStyle = settings.lineColor;
+                            ctx.lineWidth = settings.lineWidth;
+                            ctx.globalAlpha = 0.2;
+                            ctx.shadowBlur = 0;
+                        }
+                        
+                        ctx.stroke();
+                        
+                        // Reset shadow for next drawing
+                        ctx.shadowBlur = 0;
+                    }
+                }
             });
 
             raf = requestAnimationFrame(animate);
