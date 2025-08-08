@@ -40,13 +40,30 @@
         }
 
         .title {
-            font-size: 8rem;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 4.5rem;
             font-weight: bold;
-            color: #228B22;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: #39FF14;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transform: skew(-15deg);
+            text-shadow: 
+                -1px -1px 0 rgba(0, 0, 0, 0.7),
+                1px -1px 0 rgba(0, 0, 0, 0.7),
+                -1px 1px 0 rgba(0, 0, 0, 0.7),
+                1px 1px 0 rgba(0, 0, 0, 0.7),
+                0 0 5px #39FF14,
+                0 0 10px #39FF14,
+                0 0 20px #39FF14,
+                0 0 40px #39FF14,
+                3px 3px 5px rgba(0, 0, 0, 0.8);
             margin-bottom: 3rem;
             opacity: 0;
             animation: fadeInUp 2s ease-out 0.5s forwards;
+            background: linear-gradient(45deg, #39FF14, #00ff88);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         @keyframes fadeInUp {
@@ -58,6 +75,60 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        .news-ticker {
+            width: 100%;
+            /* max-width: 1000px; */
+            height: 60px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
+        }
+
+        .ticker-content {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            animation: scroll-left 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 0 2rem;
+            color: #228B22;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            border-right: 1px solid rgba(34, 139, 34, 0.3);
+            height: 100%;
+        }
+
+        .ticker-item:hover {
+            color: #32CD32;
+        }
+
+        .ticker-item:last-child {
+            border-right: none;
         }
 
         .chart-grid {
@@ -124,15 +195,25 @@
         }
 
         .chart-link:hover .chart-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             text-decoration: underline;
             color: #32CD32;
         }
 
         @media (max-width: 768px) {
             .title {
-                font-size: 2.5rem;
+                font-size: 3rem;
                 margin-bottom: 2rem;
+            }
+            
+            .news-ticker {
+                height: 50px;
+                /* max-width: 600px; */
+            }
+            
+            .ticker-item {
+                font-size: 0.8rem;
+                padding: 0 1.5rem;
             }
             
             .chart-grid {
@@ -154,6 +235,21 @@
     </style>
     
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <div class="news-ticker">
+        <div class="ticker-content">
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📈 Fed Raises Interest Rates by 0.25%</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💼 Unemployment Drops to 3.7%</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏦 Banking Sector Shows Strong Q3 Results</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📊 GDP Growth Exceeds Expectations</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💰 Inflation Rate Stabilizes at 2.1%</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🌍 Global Trade Volume Increases</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">⚡ Energy Prices Show Volatility</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏭 Manufacturing Index Rises</a>
+        </div>
+    </div>
+
 </head>
 
 <body>
@@ -161,6 +257,7 @@
     
     <div class="main-content">
         <h1 class="title">Data Profusion</h1>
+        
         
         <div class="chart-grid">
             <a href="{{ url_for('dash_dashboard') }}" target="_blank" class="chart-link">
