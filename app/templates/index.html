@@ -90,6 +90,7 @@
             position: relative;
             opacity: 0;
             animation: fadeIn 1.5s ease-out 1s forwards;
+            z-index: 2; /*puts the news ticket above particles*/
         }
 
         .ticker-content {
@@ -237,6 +238,9 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
     <div class="news-ticker">
         <div class="ticker-content">
             <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📈 Fed Raises Interest Rates by 0.25%</a>
@@ -249,10 +253,7 @@
             <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏭 Manufacturing Index Rises</a>
         </div>
     </div>
-
-</head>
-
-<body>
+    
     <div id="particles"></div>
     
     <div class="main-content">
