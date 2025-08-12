@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <!-- Inner glow gradient -->
+    <radialGradient id="innerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#39FF14;stop-opacity:1" />
+      <stop offset="85%" style="stop-color:#39FF14;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#39FF14;stop-opacity:0.4" />
+    </radialGradient>
+    
+    <!-- Outer glow effect -->
+    <filter id="glow">
+      <!-- Main blur effect -->
+      <feGaussianBlur stdDeviation="2" result="glow"/>
+      <!-- Increase glow intensity -->
+      <feComposite in="glow" in2="glow" operator="over" result="intensifiedGlow"/>
+      <!-- Combine everything -->
+      <feMerge>
+        <feMergeNode in="intensifiedGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Base orb -->
+  <circle 
+    cx="50" 
+    cy="50" 
+    r="35" 
+    fill="url(#innerGlow)" 
+    filter="url(#glow)"
+    style="transform-origin: center; animation: pulse 2s ease-in-out infinite"
+  />
+  
+  <!-- Optional: Add animation -->
+  <style>
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</svg>

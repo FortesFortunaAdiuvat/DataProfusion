@@ -80,18 +80,35 @@
         .news-ticker {
             width: 100%;
             /* max-width: 1000px; */
-            height: 60px;
+            height: 45px;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            margin-bottom: 2rem;
+            margin-bottom: 0rem;
             overflow: hidden;
             position: relative;
             opacity: 0;
             animation: fadeIn 1.5s ease-out 1s forwards;
             z-index: 2; /*puts the news ticket above particles*/
         }
+
+        .price-ticker {
+            width: 100%;
+            /* max-width: 1000px; */
+            height: 25px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            margin-bottom: 0rem;
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
+            z-index: 2; /*puts the news ticket above particles*/
+        }
+
 
         .ticker-content {
             display: flex;
@@ -100,6 +117,15 @@
             animation: scroll-left 25s linear infinite;
             white-space: nowrap;
         }
+
+        .price-content {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            animation: scroll-left 12s linear infinite;
+            white-space: nowrap;
+        }
+
 
         .ticker-content:hover {
             animation-play-state: paused;
@@ -238,6 +264,12 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+    <!-- Fallback favicon for browsers that don't support SVG -->
+    <link rel="alternate icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <!-- For iOS devices -->
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
 </head>
 
 <body>
@@ -254,10 +286,24 @@
         </div>
     </div>
     
+    <div class="price-ticker">
+        <div class="price-content">
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📈 Fed Raises Interest Rates by 0.25%</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💼 Unemployment Drops to 3.7%</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏦 Banking Sector Shows Strong Q3 Results</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📊 GDP Growth Exceeds Expectations</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💰 Inflation Rate Stabilizes at 2.1%</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🌍 Global Trade Volume Increases</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">⚡ Energy Prices Show Volatility</a>
+            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏭 Manufacturing Index Rises</a>
+        </div>
+    </div>
+
+    
     <div id="particles"></div>
     
     <div class="main-content">
-        <h1 class="title">Data Profusion</h1>
+        <h1 class="title">-Data Profusion-</h1>
         
         
         <div class="chart-grid">
