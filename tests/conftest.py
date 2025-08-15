@@ -35,7 +35,7 @@ def sample_fred_series():
     """Sample FRED series data for testing."""
     dates = pd.date_range(start='2020-01-01', end='2020-12-31', freq='Q')
     values = [21427.7, 19520.1, 21170.3, 21494.7]  # Sample GDP values
-    return pd.Series(values, index=dates, name='GDP')
+    return pd.Series(values, index=dates, name='GDP').rename_axis('date')
 
 
 @pytest.fixture
@@ -55,6 +55,4 @@ def sample_fred_metadata():
 def mock_fred_api():
     """Mock the fredapi.Fred class."""
     with patch('app.data.fred_client.Fred') as mock_fred_class:
-        mock_fred_instance = Mock()
-        mock_fred_class.return_value = mock_fred_instance
-        yield mock_fred_instance
+        yield mock_fred_class
