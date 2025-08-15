@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Data Profusion - Economic Charts</title>
+    <title>Data Profusion - Charts For Life</title>
     
     <style>
         body {
@@ -35,7 +35,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 140px 5px 5px 5px;
             box-sizing: border-box;
         }
 
@@ -228,6 +228,10 @@
         }
 
         @media (max-width: 768px) {
+            .main-content {
+                padding: 160px 5px 5px 5px;
+            }
+            
             .title {
                 font-size: 3rem;
                 margin-bottom: 2rem;
@@ -258,6 +262,67 @@
                 height: 60px;
                 font-size: 1.2rem;
             }
+            
+            .nav-content {
+                padding: 0 1rem;
+            }
+            
+            .nav-item {
+                padding: 0.5rem 0.8rem;
+                margin: 0 0.2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        .top-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 3;
+        }
+
+        .nav-bar {
+            position: relative;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            margin-top: 5px;
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            color: #39FF14;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease;
+            margin: 0 0.5rem;
+        }
+
+        .nav-item:hover {
+            color: #00ff88;
+        }
+
+        .active {
+            color: #00ff88;
+            position: relative;
+        }
+
+        .active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
         }
     </style>
     
@@ -270,44 +335,78 @@
     <link rel="alternate icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     <!-- For iOS devices -->
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <!-- Price Ticker Script -->
+    <script src="{{ url_for('static', filename='js/price-ticker.js') }}" defer></script>
 </head>
 
 <body>
-    <div class="news-ticker">
-        <div class="ticker-content">
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📈 Fed Raises Interest Rates by 0.25%</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💼 Unemployment Drops to 3.7%</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏦 Banking Sector Shows Strong Q3 Results</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📊 GDP Growth Exceeds Expectations</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💰 Inflation Rate Stabilizes at 2.1%</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🌍 Global Trade Volume Increases</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">⚡ Energy Prices Show Volatility</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏭 Manufacturing Index Rises</a>
+        <div class="main-content">
+        <div class="news-ticker">
+            <div class="ticker-content">
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📈 Fed Raises Interest Rates by 0.25%</a>
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💼 Unemployment Drops to 3.7%</a>
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏦 Banking Sector Shows Strong Q3 Results</a>
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📊 GDP Growth Exceeds Expectations</a>
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💰 Inflation Rate Stabilizes at 2.1%</a>
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🌍 Global Trade Volume Increases</a>
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">⚡ Energy Prices Show Volatility</a>
+                <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏭 Manufacturing Index Rises</a>
+            </div>
         </div>
-    </div>
-    
-    <div class="price-ticker">
-        <div class="price-content">
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📈 Fed Raises Interest Rates by 0.25%</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💼 Unemployment Drops to 3.7%</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏦 Banking Sector Shows Strong Q3 Results</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">📊 GDP Growth Exceeds Expectations</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">💰 Inflation Rate Stabilizes at 2.1%</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🌍 Global Trade Volume Increases</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">⚡ Energy Prices Show Volatility</a>
-            <a href="#" class="ticker-item" onclick="window.open('https://example.com', '_blank'); return false;">🏭 Manufacturing Index Rises</a>
+        
+        <div class="price-ticker">
+            <div class="ticker-content">
+                <span class="ticker-item crypto">
+                    <span class="symbol">BTC</span>
+                    <span class="price">$43,215.67</span>
+                    <span class="change positive">+2.45%</span>
+                </span>
+                <span class="ticker-item stock">
+                    <span class="symbol">AAPL</span>
+                    <span class="price">$189.84</span>
+                    <span class="change negative">-0.73%</span>
+                </span>
+                <span class="ticker-item crypto">
+                    <span class="symbol">ETH</span>
+                    <span class="price">$2,245.12</span>
+                    <span class="change positive">+3.21%</span>
+                </span>
+                <span class="ticker-item stock">
+                    <span class="symbol">MSFT</span>
+                    <span class="price">$376.95</span>
+                    <span class="change positive">+1.25%</span>
+                </span>
+                <span class="ticker-item crypto">
+                    <span class="symbol">SOL</span>
+                    <span class="price">$98.45</span>
+                    <span class="change positive">+5.67%</span>
+                </span>
+                <span class="ticker-item stock">
+                    <span class="symbol">NVDA</span>
+                    <span class="price">$457.82</span>
+                    <span class="change positive">+2.89%</span>
+                </span>
+            </div>
         </div>
-    </div>
+        
+        <nav class="nav-bar">
+            <div class="nav-content">
+                <a href="{{ url_for('index') }}" class="nav-item {{ 'active' if active_page == 'home' }}">Home</a>
+                <a href="{{ url_for('charts') }}" class="nav-item {{ 'active' if active_page == 'charts' }}">Charts</a>
+                <a href="{{ url_for('news') }}" class="nav-item {{ 'active' if active_page == 'news' }}">News</a>
+                <a href="{{ url_for('about') }}" class="nav-item {{ 'active' if active_page == 'about' }}">About</a>
+                <a href="{{ url_for('contact') }}" class="nav-item {{ 'active' if active_page == 'contact' }}">Contact</a>
+            </div>
+        </nav>
 
-    
-    <div id="particles"></div>
+        <div id="particles"></div>
     
     <div class="main-content">
         <h1 class="title">-Data Profusion-</h1>
         
         
         <div class="chart-grid">
-            <a href="{{ url_for('dash_dashboard') }}" target="_blank" class="chart-link">
+            <a href="{{ url_for('charts') }}" target="_blank" class="chart-link">
                 <div class="chart-icon">GDP</div>
                 <div class="chart-title">Economic Growth</div>
             </a>

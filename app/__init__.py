@@ -1,41 +1,29 @@
-"""Application factory for the economy charts Flask application.
-
-By using a factory function we can create multiple instances of the app with
-different configurations (e.g. for testing versus production).  It also
-decouples the creation of the Dash apps from the Flask app, making the
-structure modular and easier to extend.
-"""
+"""Application factory for the economy charts Flask application."""
 
 from __future__ import annotations
-
-import os
-from flask import Flask, render_template
-
-from .dash import register_dashapps
+from flask import Flask
+from app.config.secrets import SecureConfig
+from app.dash.charts import create_dash_app
 
 
-def create_app() -> Flask:
-    """Create and configure a new Flask application.
+# Make dash_app available at package level
+dash_app = None
 
-    Returns
-    -------
-    Flask
-        A configured Flask application instance.
-    """
-    app = Flask(__name__, instance_relative_config=False)
 
-    # Set a secret key for session management.  In production you should
-    # override this via an environment variable or configuration file.
-    app.secret_key = os.environ.get("FLASK_SECRET_KEY", "change-me")
+def create_app(config_class=SecureConfig) -> Flask:
+    """Create and configure a new Flask application."""
+    global dash_app
 
-    # Register Dash applications on this Flask server.
-    register_dashapps(app)
+    app = Flask(__name__)
+    app.config.from_object(config_class)
 
-    @app.route("/")
-    def index():
-        """Serve the main landing page with navigation to Dash applications."""
-        return render_template("index.html")
+    # Initialize Dash app
+    dash_app = create_dash_app()
+    dash_app.init_app(app)
 
-    # Additional Flask routes can be defined here or imported from .routes
+    # Import and initialize routes after dash_app is created
+    from app.routes import init_routes
+
+    init_routes(app)
 
     return app

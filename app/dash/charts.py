@@ -1,4 +1,4 @@
-"""Reusable Plotly figure creation functions.
+"""Reusable Plotly figure creation functions and Dash app creation.
 
 As the project grows, add functions here that construct and return Plotly
 figures for various economic datasets.  Keeping chart definitions separate
@@ -9,6 +9,8 @@ from __future__ import annotations
 
 import pandas as pd
 import plotly.express as px
+import dash
+from dash import dcc, html
 
 
 def sample_chart():
@@ -46,3 +48,40 @@ def sample_chart():
     )
 
     return fig
+
+
+def create_dash_app():
+    """Create and configure a Dash application with economic charts.
+    
+    Returns
+    -------
+    dash.Dash
+        A configured Dash application instance.
+    """
+    # Create Dash app
+    dash_app = dash.Dash(__name__, url_base_pathname='/dash/')
+    
+    # Get the sample chart figure
+    fig = sample_chart()
+    
+    # Define the layout
+    dash_app.layout = html.Div([
+        html.H1("Economic Data Dashboard", 
+                style={'textAlign': 'center', 'color': '#2c3e50', 'marginBottom': 30}),
+        
+        html.Div([
+            dcc.Graph(
+                id='gdp-chart',
+                figure=fig,
+                style={'height': '500px'}
+            )
+        ], style={'margin': '20px'}),
+        
+        html.Div([
+            html.P("This dashboard displays economic indicators and trends. "
+                   "More charts and data sources will be added in future updates.",
+                   style={'textAlign': 'center', 'color': '#7f8c8d', 'fontSize': 16})
+        ], style={'margin': '20px'})
+    ])
+    
+    return dash_app
