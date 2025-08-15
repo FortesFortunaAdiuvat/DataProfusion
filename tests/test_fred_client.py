@@ -79,15 +79,15 @@ class TestFREDDataMiner:
         mock_get_config.return_value = mock_config
         
         # Mock API responses
-        mock_fred_api.get_series.return_value = sample_fred_series
-        mock_fred_api.get_series_info.return_value = sample_fred_metadata
+        mock_fred_api.return_value.get_series.return_value = sample_fred_series
+        mock_fred_api.return_value.get_series_info.return_value = sample_fred_metadata
         
         miner = FREDDataMiner()
         result = miner.get_series("GDP", start_date="2020-01-01")
         
         # Verify API was called correctly
-        mock_fred_api.get_series.assert_called_once_with("GDP", "2020-01-01", None)
-        mock_fred_api.get_series_info.assert_called_once_with("GDP")
+        mock_fred_api.return_value.get_series.assert_called_once_with("GDP", "2020-01-01", None)
+        mock_fred_api.return_value.get_series_info.assert_called_once_with("GDP")
         
         # Verify result
         pd.testing.assert_series_equal(result, sample_fred_series)
@@ -102,8 +102,8 @@ class TestFREDDataMiner:
         mock_get_config.return_value = mock_config
         
         # Mock API responses for initial fetch
-        mock_fred_api.get_series.return_value = sample_fred_series
-        mock_fred_api.get_series_info.return_value = sample_fred_metadata
+        mock_fred_api.return_value.get_series.return_value = sample_fred_series
+        mock_fred_api.return_value.get_series_info.return_value = sample_fred_metadata
         
         miner = FREDDataMiner()
         
@@ -111,13 +111,13 @@ class TestFREDDataMiner:
         result1 = miner.get_series("GDP")
         
         # Reset mock to verify second call doesn't hit API
-        mock_fred_api.reset_mock()
+        mock_fred_api.return_value.reset_mock()
         
         # Second call - should use cache
         result2 = miner.get_series("GDP")
         
         # Verify API was not called second time
-        mock_fred_api.get_series.assert_not_called()
+        mock_fred_api.return_value.get_series.assert_not_called()
         
         # Verify results are the same
         pd.testing.assert_series_equal(result1, result2)
@@ -132,8 +132,8 @@ class TestFREDDataMiner:
         mock_get_config.return_value = mock_config
         
         # Mock API responses
-        mock_fred_api.get_series.return_value = sample_fred_series
-        mock_fred_api.get_series_info.return_value = sample_fred_metadata
+        mock_fred_api.return_value.get_series.return_value = sample_fred_series
+        mock_fred_api.return_value.get_series_info.return_value = sample_fred_metadata
         
         miner = FREDDataMiner()
         
@@ -141,14 +141,14 @@ class TestFREDDataMiner:
         miner.get_series("GDP")
         
         # Reset mock
-        mock_fred_api.reset_mock()
-        mock_fred_api.get_series.return_value = sample_fred_series
-        mock_fred_api.get_series_info.return_value = sample_fred_metadata
+        mock_fred_api.return_value.reset_mock()
+        mock_fred_api.return_value.get_series.return_value = sample_fred_series
+        mock_fred_api.return_value.get_series_info.return_value = sample_fred_metadata
         
         # Force refresh should hit API again
         result = miner.get_series("GDP", force_refresh=True)
         
-        mock_fred_api.get_series.assert_called_once()
+        mock_fred_api.return_value.get_series.assert_called_once()
         pd.testing.assert_series_equal(result, sample_fred_series)
     
     @patch('app.data.fred_client.get_api_key')
@@ -163,12 +163,12 @@ class TestFREDDataMiner:
         miner = FREDDataMiner()
         
         # First, populate cache
-        mock_fred_api.get_series.return_value = sample_fred_series
-        mock_fred_api.get_series_info.return_value = sample_fred_metadata
+        mock_fred_api.return_value.get_series.return_value = sample_fred_series
+        mock_fred_api.return_value.get_series_info.return_value = sample_fred_metadata
         miner.get_series("GDP")
         
         # Now make API fail
-        mock_fred_api.get_series.side_effect = Exception("API Error")
+        mock_fred_api.return_value.get_series.side_effect = Exception("API Error")
         
         # Should fallback to cache
         result = miner.get_series("GDP", force_refresh=True)
@@ -187,16 +187,16 @@ class TestFREDDataMiner:
         gdp_data = pd.Series([100, 101, 102], index=pd.date_range('2020-01-01', periods=3, freq='Q'))
         unrate_data = pd.Series([3.5, 3.6, 3.4], index=pd.date_range('2020-01-01', periods=3, freq='M'))
         
-        def mock_get_series(series_id, **kwargs):
+        def mock_get_series(series_id, *args, **kwargs):
             if series_id == "GDP":
                 return gdp_data
             elif series_id == "UNRATE":
                 return unrate_data
             else:
                 raise ValueError(f"Unknown series: {series_id}")
-        
-        mock_fred_api.get_series.side_effect = mock_get_series
-        mock_fred_api.get_series_info.return_value = pd.Series({'title': 'Test'})
+
+        mock_fred_api.return_value.get_series.side_effect = mock_get_series
+        mock_fred_api.return_value.get_series_info.return_value = pd.Series({'title': 'Test'})
         
         miner = FREDDataMiner()
         result = miner.get_multiple_series(["GDP", "UNRATE"])
@@ -221,12 +221,12 @@ class TestFREDDataMiner:
             'units': ['Billions of Dollars', 'Billions of Chained 2012 Dollars']
         })
         
-        mock_fred_api.search.return_value = search_results
+        mock_fred_api.return_value.search.return_value = search_results
         
         miner = FREDDataMiner()
         result = miner.search_series("GDP", limit=5)
         
-        mock_fred_api.search.assert_called_once_with("GDP", limit=5)
+        mock_fred_api.return_value.search.assert_called_once_with("GDP", limit=5)
         pd.testing.assert_frame_equal(result, search_results)
     
     @patch('app.data.fred_client.get_api_key')
@@ -253,11 +253,11 @@ class TestFREDDataMiner:
             )
         
         # Mock fresh API response
-        mock_fred_api.get_series.return_value = sample_fred_series
-        mock_fred_api.get_series_info.return_value = sample_fred_metadata
+        mock_fred_api.return_value.get_series.return_value = sample_fred_series
+        mock_fred_api.return_value.get_series_info.return_value = sample_fred_metadata
         
         # Should fetch fresh data due to cache expiration
         result = miner.get_series("GDP")
-        
-        mock_fred_api.get_series.assert_called_once()
+
+        mock_fred_api.return_value.get_series.assert_called_once()
         pd.testing.assert_series_equal(result, sample_fred_series)
