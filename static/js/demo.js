@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     dotColor: '#dea518',
     lineColor: '#e3ebeb'
   });
-  var intro = document.getElementById('intro');
-  intro.style.marginTop = - intro.offsetHeight / 2 + 'px';
 }, false);
 
 

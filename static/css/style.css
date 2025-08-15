@@ -56,8 +56,8 @@ table {
 
 html, body {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -74,18 +74,61 @@ body {
 }
 
 #particles {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  z-index: -1;
 }
 
 #intro {
-  position: absolute;
+  position: relative;
   left: 0;
-  top: 50%;
-  padding: 0 20px;
+  padding: 40px 20px;
   width: 100%;
   text-align: center;
+}
+
+header, footer {
+  width: 100%;
+}
+
+#navbar, #news-ticker, #price-ticker, .footer-ticker, .footer-nav {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  color: #fff;
+}
+
+#navbar a, .footer-nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+#navbar a:hover, .footer-nav a:hover {
+  color: #dea518;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+main {
+  padding-top: 20px;
+}
+
+.footer-nav {
+  text-align: center;
+}
+
+.footer-ticker marquee,
+#news-ticker marquee,
+#price-ticker marquee {
+  white-space: nowrap;
 }
 h1 {
   text-transform: uppercase;
