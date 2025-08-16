@@ -20,7 +20,8 @@ def init_routes(app):
 
     @app.route("/charts")
     def charts():
-        return redirect("/dash/")
+        """Render a list of available Dash charts."""
+        return render_template("charts.html", active_page="charts")
 
     @app.route("/news")
     def news():
