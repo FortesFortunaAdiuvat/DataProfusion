@@ -34,19 +34,19 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 180px 5px 80px 5px;
+            padding: 120px 5px 80px 5px;
             box-sizing: border-box;
         }
 
-        .title {
+        .nav-brand {
             font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 4.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             color: #39FF14;
             text-transform: uppercase;
             letter-spacing: 2px;
             transform: skew(-15deg);
-            text-shadow: 
+            text-shadow:
                 -1px -1px 0 rgba(0, 0, 0, 0.7),
                 1px -1px 0 rgba(0, 0, 0, 0.7),
                 -1px 1px 0 rgba(0, 0, 0, 0.7),
@@ -56,13 +56,11 @@
                 0 0 20px #39FF14,
                 0 0 40px #39FF14,
                 3px 3px 5px rgba(0, 0, 0, 0.8);
-            margin-bottom: 3rem;
-            opacity: 0;
-            animation: fadeInUp 2s ease-out 0.5s forwards;
             background: linear-gradient(45deg, #39FF14, #00ff88);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-decoration: none;
         }
 
         @keyframes fadeInUp {
@@ -228,12 +226,12 @@
 
         @media (max-width: 768px) {
             .main-content {
-                padding: 200px 5px 80px 5px;
+                padding: 150px 5px 80px 5px;
             }
             
-            .title {
-                font-size: 3rem;
-                margin-bottom: 2rem;
+            .nav-brand {
+                font-size: 1.5rem;
+                margin-bottom: 0.5rem;
             }
             
             .news-ticker {
@@ -264,6 +262,8 @@
             
             .nav-content {
                 padding: 0 1rem;
+                flex-direction: column;
+                align-items: center;
             }
             
             .nav-item {
@@ -295,6 +295,14 @@
 
         .nav-content {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .nav-links {
+            display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -310,6 +318,8 @@
 
         .nav-item:hover {
             color: #00ff88;
+            text-decoration: underline;
+            text-decoration-color: #00ff88;
         }
 
         .active {
@@ -382,11 +392,14 @@
     <div class="top-section">
         <nav class="nav-bar">
             <div class="nav-content">
-                <a href="{{ url_for('index') }}" class="nav-item {{ 'active' if active_page == 'home' }}">Home</a>
-                <a href="{{ url_for('charts') }}" class="nav-item {{ 'active' if active_page == 'charts' }}">Charts</a>
-                <a href="{{ url_for('news') }}" class="nav-item {{ 'active' if active_page == 'news' }}">News</a>
-                <a href="{{ url_for('about') }}" class="nav-item {{ 'active' if active_page == 'about' }}">About</a>
-                <a href="{{ url_for('contact') }}" class="nav-item {{ 'active' if active_page == 'contact' }}">Contact</a>
+                <a href="{{ url_for('index') }}" class="nav-brand">Data Profusion</a>
+                <div class="nav-links">
+                    <a href="{{ url_for('index') }}" class="nav-item {{ 'active' if active_page == 'home' }}">Home</a>
+                    <a href="{{ url_for('charts') }}" class="nav-item {{ 'active' if active_page == 'charts' }}">Charts</a>
+                    <a href="{{ url_for('news') }}" class="nav-item {{ 'active' if active_page == 'news' }}">News</a>
+                    <a href="{{ url_for('about') }}" class="nav-item {{ 'active' if active_page == 'about' }}">About</a>
+                    <a href="{{ url_for('contact') }}" class="nav-item {{ 'active' if active_page == 'contact' }}">Contact</a>
+                </div>
             </div>
         </nav>
         <div class="news-ticker">
@@ -440,8 +453,6 @@
     <div id="particles"></div>
 
     <div class="main-content">
-        <h1 class="title">-Data Profusion-</h1>
-
         <div class="chart-grid">
             <a href="{{ url_for('charts') }}" target="_blank" class="chart-link">
                 <div class="chart-icon">GDP</div>
