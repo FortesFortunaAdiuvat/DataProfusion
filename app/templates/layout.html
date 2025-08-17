@@ -12,6 +12,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
     />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}" />
     <style>
       body {
         margin: 40px;
@@ -19,6 +20,18 @@
     </style>
   </head>
   <body>
+    <nav class="nav-bar">
+      <div class="nav-content">
+        <a href="{{ url_for('index') }}" class="nav-brand">Data Profusion</a>
+        <div class="nav-links">
+          <a href="{{ url_for('index') }}" class="nav-item {{ 'active' if active_page == 'home' }}">Home</a>
+          <a href="{{ url_for('charts') }}" class="nav-item {{ 'active' if active_page == 'charts' }}">Charts</a>
+          <a href="{{ url_for('news') }}" class="nav-item {{ 'active' if active_page == 'news' }}">News</a>
+          <a href="{{ url_for('about') }}" class="nav-item {{ 'active' if active_page == 'about' }}">About</a>
+          <a href="{{ url_for('contact') }}" class="nav-item {{ 'active' if active_page == 'contact' }}">Contact</a>
+        </div>
+      </div>
+    </nav>
     {% block content %}{% endblock %}
   </body>
 </html>

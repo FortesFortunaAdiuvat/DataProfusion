@@ -111,7 +111,10 @@ class FREDDataMiner:
         try:
             logger.info(f"Fetching {series_id} from FRED API")
             data = self.fred.get_series(series_id, start_date, end_date)
-            
+            data.index = pd.to_datetime(data.index)
+            data.index.name = 'date'
+            data.index.freq = None
+
             # Cache the data
             self._cache_series(series_id, data)
             
@@ -168,7 +171,7 @@ class FREDDataMiner:
                         return None
                 
                 df['date'] = pd.to_datetime(df['date'])
-                return df.set_index('date')['value']
+                return df.set_index('date')['value'].rename(series_id)
                 
         except Exception as e:
             logger.error(f"Error reading cache for {series_id}: {e}")

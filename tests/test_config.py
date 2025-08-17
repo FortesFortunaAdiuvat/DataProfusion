@@ -4,7 +4,7 @@ import pytest
 import json
 import os
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 
 from app.config.secrets import SecureConfig, get_config, get_api_key
 
