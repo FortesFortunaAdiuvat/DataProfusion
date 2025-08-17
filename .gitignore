@@ -53,3 +53,8 @@ config/api_keys.json
 *.pem
 *.p12
 *.pfx
+# Node / Vite build artifacts
+frontend/node_modules/
+frontend/dist/
+app/static/js/svelte/bundle.js
+

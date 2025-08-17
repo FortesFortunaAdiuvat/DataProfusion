@@ -1,0 +1,5 @@
+{# Svelte component mount point. Include this block in templates as needed. #}
+{%- block svelte_component %}
+<div id="svelte-app"></div>
+<script type="module" src="{{ url_for('static', filename='js/svelte/bundle.js') }}"></script>
+{%- endblock %}

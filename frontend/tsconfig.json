@@ -1,0 +1,17 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "importsNotUsedAsValues": "preserve",
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "lib": ["DOM", "ES2020"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**", "../app/static/js/svelte/**"]
+}
