@@ -67,6 +67,31 @@ or the official Python installer for your operating system.
 6. **Visit your Dash application.**  Once the server is running, open
    `http://127.0.0.1:5000/dash/` in your browser to see the sample chart.
 
+## Docker
+
+You can build and run the application inside a Docker container.
+
+### Build the image
+
+```bash
+docker build -t economy-charts .
+```
+
+### Run the container
+
+```bash
+docker run -p 8000:8000 economy-charts
+```
+
+### Using docker-compose
+
+The repository includes a `docker-compose.yml` that starts the web application
+along with a small Redis cache. To build and run all services:
+
+```bash
+docker compose up --build
+```
+
 ## Testing
 
 This project includes a comprehensive test suite to ensure reliability and data quality.
