@@ -35,5 +35,9 @@ def init_routes(app):
     def contact():
         return render_template("contact.html", active_page="contact")
 
+    @app.route("/health")
+    def health():
+        return {"status": "ok"}, 200
+
     # Note: Dash routes are automatically handled by the Dash app integration
     # The /dash/ route is managed by the Dash application itself
