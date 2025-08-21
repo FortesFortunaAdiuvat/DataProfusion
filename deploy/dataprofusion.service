@@ -1,0 +1,15 @@
+[Unit]
+Description=Gunicorn instance for DataProfusion
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/dataprofusion
+Environment="PATH=/srv/dataprofusion/venv/bin"
+ExecStart=/srv/dataprofusion/venv/bin/gunicorn "app:create_app" --bind 127.0.0.1:8000 --workers 3 --factory
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
