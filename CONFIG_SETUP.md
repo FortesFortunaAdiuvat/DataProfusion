@@ -64,14 +64,18 @@ The configuration is stored in `config/secrets.json` (automatically created):
 - **URL**: https://www.coingecko.com/en/api
 - **Required for**: Alternative cryptocurrency data source
 
-## Environment Variables (Alternative)
+## Environment Variables
 
-You can also set API keys via environment variables:
+Configuration values can also be supplied through environment variables or a `.env` file. Set the following variables:
 
 ```bash
-export FRED_API_KEY="your-fred-key"
-export COINMARKETCAP_API_KEY="your-cmc-key"
-export COINGECKO_API_KEY="your-gecko-key"
+FRED_API_KEY="your-fred-key"
+COINMARKETCAP_API_KEY="your-cmc-key"
+COINGECKO_API_KEY="your-gecko-key"
+FLASK_CONFIG="development"
 ```
 
-Environment variables take precedence over the config file.
+- `FRED_API_KEY` – required for accessing economic data from FRED
+- `FLASK_CONFIG` – selects the Flask configuration (e.g., `development`, `production`)
+
+Environment variables take precedence over the config file. An `.env.example` file is provided as a template.

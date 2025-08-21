@@ -130,7 +130,7 @@ class SecureConfig:
         logger.info(f"Updated API key for {service}")
     
     def get_config(self, key: str, default: Any = None) -> Any:
-        """Get a configuration value.
+        """Get a configuration value with environment variable fallback.
         
         Parameters
         ----------
@@ -144,15 +144,26 @@ class SecureConfig:
         Any
             Configuration value
         """
+        # Check environment variable first
+        env_var = key.upper().replace('.', '_')
+        env_val = os.getenv(env_var)
+        if env_val is not None:
+            logger.debug(f"Using {key} from environment variable {env_var}")
+            return env_val
+
         keys = key.split('.')
         value = self._config_data
-        
+
         try:
             for k in keys:
                 value = value[k]
             return value
         except (KeyError, TypeError):
             return default
+
+    def get_flask_config(self) -> str:
+        """Return the Flask configuration setting."""
+        return os.getenv("FLASK_CONFIG", self._config_data.get("flask_config", "production"))
     
     def set_config(self, key: str, value: Any) -> None:
         """Set a configuration value.
@@ -224,3 +235,8 @@ def get_config() -> SecureConfig:
 def get_api_key(service: str) -> Optional[str]:
     """Convenience function to get an API key."""
     return get_config().get_api_key(service)
+
+
+def get_flask_config() -> str:
+    """Convenience function to get the Flask configuration setting."""
+    return get_config().get_flask_config()
