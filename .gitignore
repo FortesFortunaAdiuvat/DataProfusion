@@ -1,6 +1,7 @@
 # Python
 __pycache__/
 app/__pycache__/
+**.**.pyc
 app/**/*.pyc
 app/__pycache__/*.py[cod]
 *.py[cod]
@@ -56,3 +57,4 @@ config/api_keys.json
 *.pem
 *.p12
 *.pfx
+app/__pycache__/__init__.cpython-313.pyc
