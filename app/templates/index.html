@@ -34,7 +34,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 200px 5px 80px 5px; /* Increase top padding to account for fixed header */
+            padding: 200px 5px 120px 5px; /* Extra bottom padding for fixed footer */
             box-sizing: border-box;
             min-height: calc(100vh - 100px); /* Subtract approximate header + footer height */
             margin: 2rem auto; /* Add horizontal auto margins */
@@ -42,26 +42,16 @@
 
         .nav-brand {
             font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
             font-weight: bold;
             color: #39FF14;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transform: skew(-15deg);
             text-shadow:
-                -1px -1px 0 rgba(0, 0, 0, 0.7),
-                1px -1px 0 rgba(0, 0, 0, 0.7),
-                -1px 1px 0 rgba(0, 0, 0, 0.7),
-                1px 1px 0 rgba(0, 0, 0, 0.7),
                 0 0 5px #39FF14,
                 0 0 10px #39FF14,
                 0 0 20px #39FF14,
-                0 0 40px #39FF14,
-                3px 3px 5px rgba(0, 0, 0, 0.8);
-            background: linear-gradient(45deg, #39FF14, #00ff88);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+                0 0 40px #39FF14;
             text-decoration: none;
         }
 
@@ -342,9 +332,12 @@
 
         .footer {
             width: 100%;
-            margin-top: 3rem; /* Increase space above footer */
+            position: fixed;
+            bottom: 0;
+            left: 0;
             text-align: center;
             padding: 1rem 0; /* Add padding around footer content */
+            z-index: 3;
         }
 
         .footer-ticker {
