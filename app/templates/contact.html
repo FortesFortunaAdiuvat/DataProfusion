@@ -2,6 +2,23 @@
 {% block content %}
 <div class="main-content">
     <h1>Contact</h1>
-    <!-- Add your contact form here -->
+    <section>
+        <h2>Accounting Consulting</h2>
+        <p>We offer bookkeeping, financial reporting, and tax planning services to keep your business compliant and informed.</p>
+    </section>
+    <section>
+        <h2>Technology Consulting</h2>
+        <p>From data analytics to infrastructure automation, our technology guidance helps modernize operations and drive growth.</p>
+    </section>
+    <h2>Request Consulting Services</h2>
+    <form method="post" action="mailto:owner@example.com" enctype="text/plain">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+        <button type="submit">Send</button>
+    </form>
 </div>
 {% endblock %}

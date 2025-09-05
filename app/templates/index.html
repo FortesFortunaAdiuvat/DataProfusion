@@ -375,6 +375,21 @@
         .footer-nav a:hover {
             color: #00ff88;
         }
+
+        .consulting-link {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            text-align: center;
+        }
+
+        .consulting-link a {
+            color: #39FF14;
+            text-decoration: none;
+        }
+
+        .consulting-link a:hover {
+            color: #00ff88;
+        }
     </style>
     
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
@@ -455,6 +470,7 @@
     <div id="particles"></div>
 
     <div class="main-content">
+        <p class="consulting-link"><a href="{{ url_for('contact') }}">Technology &amp; Accounting Consulting</a></p>
         <div class="chart-grid">
             <a href="/dash/" target="_blank" class="chart-link">
                 <div class="chart-icon">GDP</div>
@@ -518,3 +534,4 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/demo.js') }}"></script>
 </body>
 </html>
+
