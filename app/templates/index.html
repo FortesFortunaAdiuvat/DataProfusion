@@ -362,6 +362,8 @@
             border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             padding: 0.5rem 1rem;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
         }
 
         .footer-nav a {
@@ -373,6 +375,45 @@
         }
 
         .footer-nav a:hover {
+            color: #00ff88;
+        }
+
+        .consulting-banner {
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            text-align: center;
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: clamp(1rem, 3vw, 1.75rem);
+            font-weight: bold;
+            color: #39FF14;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow:
+                0 0 5px #39FF14,
+                0 0 10px #39FF14,
+                0 0 20px #39FF14,
+                0 0 40px #39FF14;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out 1s forwards;
+            transition: all 0.3s ease;
+        }
+
+        .consulting-banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(57, 255, 20, 0.3);
+        }
+
+        .consulting-banner a {
+            color: #39FF14;
+            text-decoration: none;
+        }
+
+        .consulting-banner a:hover {
             color: #00ff88;
         }
     </style>
@@ -455,6 +496,7 @@
     <div id="particles"></div>
 
     <div class="main-content">
+        <div class="consulting-banner"><a href="{{ url_for('contact') }}">Technology &amp; Accounting Consulting</a></div>
         <div class="chart-grid">
             <a href="/dash/" target="_blank" class="chart-link">
                 <div class="chart-icon">GDP</div>
@@ -518,3 +560,4 @@
     <script type="text/javascript" src="{{ url_for('static', filename='js/demo.js') }}"></script>
 </body>
 </html>
+

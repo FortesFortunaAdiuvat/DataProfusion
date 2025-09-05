@@ -2,6 +2,25 @@
 {% block content %}
 <div class="main-content">
     <h1>About</h1>
-    <!-- Add your about content here -->
+    <img src="{{ url_for('static', filename='images/nuclear_reactor.svg') }}" alt="Illustration of a nuclear reactor" style="max-width:300px;width:100%;height:auto;margin:20px 0;">
+    <p>Nuclear energy offers a high-density, low-carbon source of electricity. Compared to fossil fuels, reactors release virtually no greenhouse gases and operate independently of weather conditions, providing steady baseload power.</p>
+    <h2>Benefits of Nuclear Energy</h2>
+    <ul>
+        <li>Produces large amounts of electricity with minimal greenhouse gas emissions.</li>
+        <li>Requires far less land than wind or solar installations for equivalent output.</li>
+        <li>Provides consistent, reliable power unlike intermittent renewable sources.</li>
+    </ul>
+    <h2>Safety Advancements</h2>
+    <ul>
+        <li>Generation III+ reactors use passive safety systems that cool and shut down reactors without human intervention.</li>
+        <li>Small modular reactors are factory-built, incorporate redundant safety features, and reduce on-site construction risk.</li>
+        <li>Modern fuel designs and improved waste management enhance containment and storage safety.</li>
+    </ul>
+    <h2>Sources</h2>
+    <ul>
+        <li><a href="https://www.iaea.org/newscenter/statements/nuclear-power-helps-combat-climate-change" target="_blank" rel="noopener">International Atomic Energy Agency – Nuclear power helps combat climate change</a></li>
+        <li><a href="https://www.world-nuclear.org/information-library/current-and-future-generation/nuclear-power-in-the-world-today.aspx" target="_blank" rel="noopener">World Nuclear Association – Nuclear power in the world today</a></li>
+        <li><a href="https://www.energy.gov/ne/articles/advancing-small-modular-reactors" target="_blank" rel="noopener">U.S. Department of Energy – Advancing small modular reactors</a></li>
+    </ul>
 </div>
 {% endblock %}
