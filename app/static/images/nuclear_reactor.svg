@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Cooling tower -->
+  <path d="M60 20 L40 180 H160 L140 20 Z" fill="#d9d9d9" stroke="#999" stroke-width="3" />
+  <!-- Radiation symbol background -->
+  <circle cx="100" cy="120" r="30" fill="#f7e600" stroke="#000" stroke-width="2" />
+  <!-- Radiation symbol blades -->
+  <path d="M100 120 L100 90 A30 30 0 0 1 130 120 Z" fill="#000" />
+  <path d="M100 120 L130 120 A30 30 0 0 1 100 150 Z" fill="#000" />
+  <path d="M100 120 L100 150 A30 30 0 0 1 70 120 Z" fill="#000" />
+  <!-- Center circle -->
+  <circle cx="100" cy="120" r="8" fill="#000" />
+</svg>
