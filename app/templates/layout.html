@@ -17,6 +17,23 @@
       body {
         margin: 40px;
       }
+      .footer {
+        margin-top: 2rem;
+        padding: 1rem 0;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .footer a {
+        margin: 0 0.5rem;
+        color: #39FF14;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .footer a:hover {
+        color: #00ff88;
+        text-decoration: underline;
+        text-decoration-color: #00ff88;
+      }
     </style>
   </head>
   <body>
@@ -33,5 +50,11 @@
       </div>
     </nav>
     {% block content %}{% endblock %}
+    <footer class="footer">
+      <nav class="footer-nav">
+        <a href="{{ url_for('privacy') }}">Privacy</a>
+        <a href="{{ url_for('terms') }}">Terms</a>
+      </nav>
+    </footer>
   </body>
 </html>
